@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1056311180545",
+    "firebase_url": "https://surpresinhadiadesorte.firebaseio.com",
+    "project_id": "surpresinhadiadesorte",
+    "storage_bucket": "surpresinhadiadesorte.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1056311180545:android:b687e2dd5761dce8",
+        "android_client_info": {
+          "package_name": "br.com.douglimar.surpresinhadiadesorte"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1056311180545-6kmhno7a8a8cmh0ddeibdj4o25id2gls.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.douglimar.surpresinhadiadesorte",
+            "certificate_hash": "1bb4e389e72ff1f11c084a0b8286031090b18aac"
+          }
+        },
+        {
+          "client_id": "1056311180545-i52stcqagc93f1ri6ej3oluomb9tdeks.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD8E3ZCsb5zlBEpkqPV5Xrm6iF2t0-W05c"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1056311180545-i52stcqagc93f1ri6ej3oluomb9tdeks.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
