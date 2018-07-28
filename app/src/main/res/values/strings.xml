@@ -7,13 +7,13 @@
     <string name="gerarJogoUnico">GERAR JOGO ÚNICO</string>
     <string name="LastResults">Últimos Resultados</string>
     <string name="googlePlayURL">https://tinyurl.com/no6dfja</string>
-    <string name="hint_qtde_de_jogos_aleatorios">Utilize os botões abaixo para informar quantos jogos você quer gerar aleatóriamente (de 2 a 10 jogos)</string>
+    <string name="hint_qtde_de_jogos_aleatorios">Utilize os botões abaixo para informar quantos jogos você quer gerar aleatóriamente (de 2 a 15 jogos)</string>
     <string name="minus">-</string>
     <string name="plus">+</string>
     <string name="gerar_numeros">GERAR NÚMEROS</string>
     <string name="numeros_da_sorte">Estes são os seus números da sorte:\n\n %1$s </string>
     <string name="minimo_2_jogos">Você tem que gerar pelo menos 2 jogos aqui.</string>
-    <string name="maximo10jogos">Você tem que gerar NO MÁXIMO 10 jogos</string>
+    <string name="maximo10jogos">Você pode gerar NO MÁXIMO 15 jogos ao mesmo tempo.</string>
     <string name="tip_generateNewBets">Clique no botão azul para gerar novas apostas sem ter que sair da tela</string>
     <string name="compartilhando">Compartilhando</string>
     <string name="surpresinha">Surpresinha</string>

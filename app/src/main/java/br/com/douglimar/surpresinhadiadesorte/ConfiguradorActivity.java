@@ -80,8 +80,8 @@ public class ConfiguradorActivity extends AppCompatActivity {
 
                 iCount++;
 
-                if (iCount >10) {
-                    iCount = 10;
+                if (iCount >15) {
+                    iCount = 15;
                     Toast.makeText(getApplicationContext(), R.string.maximo10jogos, Toast.LENGTH_SHORT).show();
                 }
                 tvNumero.setText(String.valueOf(iCount));
