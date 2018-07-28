@@ -11,7 +11,7 @@
     <string name="minus">-</string>
     <string name="plus">+</string>
     <string name="gerar_numeros">GERAR NÚMEROS</string>
-    <string name="numeros_da_sorte">Estes são os seus números da sorte:\n %1$s </string>
+    <string name="numeros_da_sorte">Estes são os seus números da sorte:\n\n %1$s </string>
     <string name="minimo_2_jogos">Você tem que gerar pelo menos 2 jogos aqui.</string>
     <string name="maximo10jogos">Você tem que gerar NO MÁXIMO 10 jogos</string>
     <string name="tip_generateNewBets">Clique no botão azul para gerar novas apostas sem ter que sair da tela</string>
@@ -19,4 +19,5 @@
     <string name="surpresinha">Surpresinha</string>
     <string name="shareWith">Compartilhar com…</string>
     <string name="title_activity_result2">Result2Activity</string>
+    <string name="MyApps">Conheça nossos aplicativos</string>
 </resources>

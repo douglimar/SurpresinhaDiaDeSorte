@@ -135,11 +135,11 @@ public class ResultActivity extends AppCompatActivity {
 
     private String generateBet(Surpresinha pSurpresinha) {
 
-        StringBuilder retorno = new StringBuilder("Estes são os seus números da sorte:\n\n");
+        String retorno = "Estes são os seus números da sorte:\n\n";
 
-        retorno.append(pSurpresinha.generateDiaDeSorteGame());
+        retorno.concat(pSurpresinha.generateDiaDeSorteGame());
 
-        return  retorno.toString();
+        return  retorno;
     }
 
     private void shareContent(String pMessage) {

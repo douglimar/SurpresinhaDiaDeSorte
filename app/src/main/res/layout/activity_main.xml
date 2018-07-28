@@ -11,7 +11,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:background="#64000000"
+        android:background="@color/colorDiaDeSorteUltraDark"
         android:layout_gravity="center_vertical"
         android:gravity="center_vertical"
         android:orientation="vertical"
@@ -41,8 +41,10 @@
         android:layout_marginTop="2dp"
         android:layout_marginLeft="12dp"
         android:layout_marginRight="12dp"
-        android:background="@drawable/rounded_button"
+        android:background="@drawable/rounded_button2"
         android:text="@string/gerarJogoUnico" />
+
+
 
     <Button
         android:id="@+id/btnMultipleGames"
@@ -52,7 +54,7 @@
         android:layout_marginLeft="12dp"
         android:layout_marginRight="12dp"
         android:layout_height="@dimen/button_height"
-        android:background="@drawable/rounded_button"
+        android:background="@drawable/rounded_button2"
         android:text="@string/gerarMultiplosJogos" />
 
     <Button
@@ -63,8 +65,19 @@
         android:layout_marginLeft="12dp"
         android:layout_marginRight="12dp"
         android:layout_height="@dimen/button_height"
-        android:background="@drawable/rounded_button"
+        android:background="@drawable/rounded_button2"
         android:text="@string/LastResults" />
+
+    <Button
+        android:id="@+id/btnMyApps"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="2dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_height="@dimen/button_height"
+        android:background="@drawable/rounded_button2"
+        android:text="@string/MyApps" />
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/adViewMain"
