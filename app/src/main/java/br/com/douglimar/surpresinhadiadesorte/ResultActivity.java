@@ -137,7 +137,7 @@ public class ResultActivity extends AppCompatActivity {
 
         String retorno = "Estes são os seus números da sorte:\n\n";
 
-        retorno.concat(pSurpresinha.generateDiaDeSorteGame());
+        retorno += pSurpresinha.generateDiaDeSorteGame();
 
         return  retorno;
     }
