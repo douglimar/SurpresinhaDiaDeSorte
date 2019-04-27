@@ -33,7 +33,6 @@ public class WebviewActivity extends AppCompatActivity {
         AdRequest adRequestWeb = new AdRequest.Builder().build();
         adViewWeb.loadAd(adRequestWeb);
 
-
         Intent intent = getIntent();
 
         String url = intent.getStringExtra("URL");
@@ -103,11 +102,6 @@ public class WebviewActivity extends AppCompatActivity {
         myWebView.getSettings().setLoadWithOverviewMode(true);
         myWebView.getSettings().setUseWideViewPort(false);
 
-        /*
-
-        if ( pMessage.equals("LOTOMANIA") || pMessage.equals("LOTOFACIL") )
-            myWebView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NORMAL);
-        else */
         myWebView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
 
         myWebView.setWebViewClient(myWebViewClient);
