@@ -13,7 +13,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
         android:fullBackupContent="@xml/backup_descriptor">
+
+        <!--
+         AdMob App ID: ca-app-pub-1098336821710456~2889568594
+         This section is necessary starting Google-Ad-Services17.0.0
+        -->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-1098336821710456~2889568594" />
+
 
         <!-- This meta-data tag is required to use Google Play Services. -->
         <meta-data
@@ -29,24 +39,28 @@
         <activity
             android:name="br.com.douglimar.surpresinhadiadesorte.MainActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name="br.com.douglimar.surpresinhadiadesorte.ConfiguradorActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name="br.com.douglimar.surpresinhadiadesorte.Splash"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="br.com.douglimar.surpresinhadiadesorte.WebviewActivity" />
+
+        <activity
+            android:name="br.com.douglimar.surpresinhadiadesorte.WebviewActivity"
+            android:screenOrientation="portrait"/>
+
         <activity
             android:name="br.com.douglimar.surpresinhadiadesorte.ResultActivity"
             android:label="@string/title_activity_result2"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"/>
     </application>
-
-
 </manifest>
