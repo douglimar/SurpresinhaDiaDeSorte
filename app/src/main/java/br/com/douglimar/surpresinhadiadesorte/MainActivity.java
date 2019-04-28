@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
@@ -175,9 +176,17 @@ public class MainActivity extends AppCompatActivity {
         AtomicReference<String> version = new AtomicReference<>("");
 
         try {
-            PackageInfo packageInfo = context.getPackageManager().getPackageInfo(getPackageName(),0);
 
-            version.set("Versão: " + packageInfo.versionName + "-" + packageInfo.getLongVersionCode());
+            if (Build.VERSION.SDK_INT >= 28) {
+                PackageInfo packageInfo = context.getPackageManager().getPackageInfo(getPackageName(),0);
+                version.set("Versão: " + packageInfo.versionName + "-" + packageInfo.getLongVersionCode());
+            } else {
+
+                version.set("Versão: " + BuildConfig.VERSION_NAME + "-" + BuildConfig.VERSION_CODE);
+
+            }
+
+
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
