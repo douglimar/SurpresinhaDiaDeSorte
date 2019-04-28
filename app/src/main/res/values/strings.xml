@@ -21,5 +21,6 @@
     <string name="title_activity_result2">Result2Activity</string>
     <string name="MyApps">Conheça nossos aplicativos</string>
     <string name="internet_conn">Sem conexão com a Internet. Verifique suas conexões e tente novamente.</string>
+    <string name="ddm_software">DDM SOFTWARE</string>
 
 </resources>

@@ -20,12 +20,12 @@ class Surpresinha {
 
         Random random = new Random();
 
-        String meses[] = {"JANEIRO","FEVEREIRO", "MARÇO", "ABRIL", "MAIO", "JUNHO",
+        String[] meses = {"JANEIRO","FEVEREIRO", "MARÇO", "ABRIL", "MAIO", "JUNHO",
                 "JULHO", "AGOSTO", "SETEMBRO", "OUTUBRO", "NOVEMBRO", "DEZEMBRO"};
 
         String mes = meses[random.nextInt(12)];
 
-        int numsDiaDeSorte[] = new int[7];
+        int[] numsDiaDeSorte = new int[7];
 
         int indice;
         StringBuilder Retorno = new StringBuilder();
@@ -55,8 +55,7 @@ class Surpresinha {
 
     }
 
-
-    private boolean consisteJogo(int pArray[], int PNumero) {
+    private boolean consisteJogo(int[] pArray, int PNumero) {
 
         boolean Retorno = false;
 

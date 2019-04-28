@@ -2,6 +2,8 @@ package br.com.douglimar.surpresinhadiadesorte;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -10,11 +12,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.firebase.analytics.FirebaseAnalytics;
+
+import java.util.concurrent.atomic.AtomicReference;
 
 @SuppressWarnings("ALL")
 public class MainActivity extends AppCompatActivity {
@@ -34,13 +39,13 @@ public class MainActivity extends AppCompatActivity {
         Button btnLastResults = findViewById(R.id.btnLastResults);
         Button btnOpenGooglePlay = findViewById(R.id.btnMyApps);
 
-
         final Surpresinha surpresinha = new Surpresinha();
         final Intent intent = getIntent();
         final String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
 
-        //TextView tvTitulo = findViewById(R.id.tvSelectGameTitle2);
-        //tvTitulo.setText(R.string.quina);
+        TextView tvAppVersion = findViewById(R.id.tvAppVersion);
+
+        tvAppVersion.setText(getAppVersion(getApplicationContext()));
 
         // Create a AdView
         // Load Advertisement Banner
@@ -163,6 +168,20 @@ public class MainActivity extends AppCompatActivity {
         assert connectivityManager != null;
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
+    private String getAppVersion(Context context){
+
+        AtomicReference<String> version = new AtomicReference<>("");
+
+        try {
+            PackageInfo packageInfo = context.getPackageManager().getPackageInfo(getPackageName(),0);
+
+            version.set("Versão: " + packageInfo.versionName + "-" + packageInfo.getLongVersionCode());
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return version.get();
     }
 
 }

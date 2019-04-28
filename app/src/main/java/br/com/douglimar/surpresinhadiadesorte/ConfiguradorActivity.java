@@ -101,7 +101,6 @@ public class ConfiguradorActivity extends AppCompatActivity {
                 bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "image");
                 mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
 
-
                 Surpresinha surpresinha = new Surpresinha();
 
                 Intent intent1 = new Intent(getBaseContext(), ResultActivity.class);
@@ -118,7 +117,6 @@ public class ConfiguradorActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
-
     }
 
     private TextView tvNumero;
@@ -145,9 +143,7 @@ public class ConfiguradorActivity extends AppCompatActivity {
         for(int i = 0; i < iQtd; i++) {
 
             iControle = i+1;
-
             retorno.append("\nJogo ").append(iControle).append("\n\n").append(pSurpresinha.generateDiaDeSorteGame()).append(sQuebralinha);
-
         }
 
         return  retorno + "\n\n\n\n\n";
