@@ -16,7 +16,7 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
 /**
- * Created by dmoraes on 08/12/2017.
+ * Created by Douglimar Moraes on 08/12/2017.
  * Get Results of lottery on the internet
  */
 
@@ -45,7 +45,7 @@ public class WebviewActivity extends AppCompatActivity {
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
 
                 super.onPageStarted(view, url, favicon);
-                progressDialog.setMessage("Aguarde... Carregando Resultados");
+                progressDialog.setMessage(getString(R.string.waiting_loading_results));
                 progressDialog.setCancelable(false);
 
                 progressDialog.setOnKeyListener(new DialogInterface.OnKeyListener(){
@@ -61,7 +61,7 @@ public class WebviewActivity extends AppCompatActivity {
 
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
 
-                progressDialog.setMessage("Aguarde... Carregando Resultados na internet");
+                progressDialog.setMessage(getString(R.string.waiting_loading_internet_results));
                 progressDialog.setCancelable(true);
 
                 progressDialog.setOnKeyListener(new DialogInterface.OnKeyListener(){
@@ -82,15 +82,6 @@ public class WebviewActivity extends AppCompatActivity {
                 }
             }
 
-			/* @Override
-			public boolean shouldOverrideUrlLoading(WebView view, String url) {
-
-				if (url.contains("www1.caixa.gov.br") == true )
-					return false;
-
-				return true;
-
-			} */
         };
 
         // Get Web view
@@ -98,7 +89,7 @@ public class WebviewActivity extends AppCompatActivity {
         myWebView.getSettings().setJavaScriptEnabled(true);
         myWebView.getSettings().setSupportZoom(true);       //Zoom Control on web (You don't need this if ROM supports Multi-Touch
         myWebView.getSettings().setBuiltInZoomControls(true); //Enable Multitouch if supported by ROM
-        myWebView.getSettings().setLoadsImagesAutomatically(true); // Dont loud the images
+        myWebView.getSettings().setLoadsImagesAutomatically(true); // Don't loud the images
         myWebView.getSettings().setLoadWithOverviewMode(true);
         myWebView.getSettings().setUseWideViewPort(false);
 

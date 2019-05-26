@@ -14,7 +14,7 @@ class Surpresinha {
     public String generateDiaDeSorteGame() {
 
         /* Regra do Jogo:
-         * O apostador pode escolher 7 numeros entre 31 numeros disponiveis
+         * O apostador pode escolher 7 numeros entre 31 numeros disponíveis
          * além de 1 Mês da Sorte
          */
 

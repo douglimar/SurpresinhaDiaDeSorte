@@ -8,6 +8,7 @@
     android:layout_height="match_parent"
     tools:context="br.com.douglimar.surpresinhadiadesorte.MainActivity">
 
+    <!--
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
@@ -17,20 +18,22 @@
         android:orientation="vertical"
         android:layout_marginBottom="6dp"
         android:id="@+id/linearLayout2">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:gravity="center_horizontal"
-            android:layout_gravity="center_horizontal"
-            android:layout_margin="4dp"
-            android:textStyle="bold"
-            android:text="@string/quina"
-            android:textColor="@color/colorWhite"
+
+
             android:id="@+id/tvSelectGameTitle2"
             />
     </LinearLayout>
-
+-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:gravity="center_horizontal"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="4dp"
+        android:textStyle="bold"
+        android:text="@string/quina"
+        android:textColor="@color/colorDiaDeSorteUltraDark" />
     <!--   android:background="@drawable/rounded_button"-->
 
     <Button
@@ -86,12 +89,5 @@
         ads:adUnitId="@string/banner_ad_unit_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-
-<TextView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/tvAppVersion"
-    android:textSize="12sp"
-    android:gravity="center_horizontal|bottom"/>
 
 </LinearLayout>

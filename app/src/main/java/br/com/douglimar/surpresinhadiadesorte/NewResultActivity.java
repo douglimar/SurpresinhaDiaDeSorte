@@ -2,71 +2,93 @@ package br.com.douglimar.surpresinhadiadesorte;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.CoordinatorLayout;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
-public class ResultActivity extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class NewResultActivity extends AppCompatActivity {
 
     private FirebaseAnalytics mFirebaseAnalytics;
-    private TextView tvResult;
+    private ListView listView;
+    private List<String> myList;
+    private ArrayAdapter<String> adapter;
+    private int iQtdeDeJogos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_result);
+        setContentView(R.layout.activity_new_result);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         // Obtain the FirebaseAnalytics instance.
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
-        AdView adView = findViewById(R.id.adViewResult);
+        ConstraintLayout constraintLayout = findViewById(R.id.constraintLayoutNewResult);
+
+        AdView adView = findViewById(R.id.adViewNewResult);
         AdRequest adRequest = new AdRequest.Builder().build();
         adView.loadAd(adRequest);
 
-        AppBarLayout appBarLayout = findViewById(R.id.app_bar);
-        tvResult = findViewById(R.id.tvResult);
-        CoordinatorLayout linearResult = findViewById(R.id.linearResult);
+        TextView tvNewResult = findViewById(R.id.tvNewResult);
+        tvNewResult.setText(R.string.numeros_da_sorte2);
+
+        listView = findViewById(R.id.lstViewResult);
+        myList = new ArrayList<>();
 
         Intent intent = getIntent();
 
         final String numerosGerados = intent.getStringExtra(MainActivity.EXTRA_MESSAGE2);
-        int iQtdeDeJogos = intent.getIntExtra("XPTO", 0);
+        iQtdeDeJogos = intent.getIntExtra("XPTO", 0);
+
+        if (iQtdeDeJogos <=1)
+            myList.add(numerosGerados);
+
+        else {
+
+            String[] aNumerosGerados = numerosGerados.split(";");
+
+            /* Replacing the below FOR loop to a Collection -- Java Suggestion
+            for (int i =0; i< iQtdeDeJogos; i++) {
+                myList.add(aNumerosGerados[i]);
+            } */
+
+            myList.addAll(Arrays.asList(aNumerosGerados).subList(0, iQtdeDeJogos));
+            myList.add("\n\n");
+        }
+
+        adapter = new ArrayAdapter<>(this, R.layout.item_row, R.id.tvItemRow, myList);
+
+        listView.setAdapter(adapter);
 
         this.setTitle(R.string.app_name);
 
         final Surpresinha surpresinha = new Surpresinha();
 
-        linearResult.setBackgroundResource(R.color.colorDiaDeSorte);
-        appBarLayout.setBackgroundResource(R.drawable.degrade_radial_diadesorte);
+        constraintLayout.setBackgroundResource(R.color.colorDiaDeSorte);
 
-        tvResult.setText(getString(R.string.numeros_da_sorte, numerosGerados));
+        FloatingActionButton fabNewGame = findViewById(R.id.fabNewGame);
 
-        //Toast.makeText(getBaseContext(), "Clique no botão azul para gerar novos números sem ter que sair da tela.", Toast.LENGTH_LONG).show();
-
-        Snackbar.make(findViewById(R.id.linearResult), R.string.tip_generateNewBets, Snackbar.LENGTH_LONG)
-                .setAction("Action", null)
-                .show();
-
-        FloatingActionButton fab = findViewById(R.id.fab);
         final int finalIQtdeDeJogos = iQtdeDeJogos;
 
-        fab.setOnClickListener(new View.OnClickListener() {
+        fabNewGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //  Snackbar.make(view, "Gerando novos números da sorte.", Snackbar.LENGTH_LONG)
-                //          .setAction("Action", null).show();
 
                 Bundle bundle = new Bundle();
                 bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "Result");
@@ -74,15 +96,31 @@ public class ResultActivity extends AppCompatActivity {
                 bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "image");
                 mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
 
-                if (finalIQtdeDeJogos<=1)
-                    tvResult.setText(generateBet(surpresinha));
-                else
-                    tvResult.setText(generateMultiBets(surpresinha, finalIQtdeDeJogos));
+                if (finalIQtdeDeJogos<=1) {
+                    myList.clear();
+                            myList.add(generateBet(surpresinha));
+
+                    listView.setAdapter(adapter);
+                }
+                else {
+                    myList.clear();
+
+                    String[] aNumerosGerados = generateMultipleBetsList(surpresinha,finalIQtdeDeJogos).split(";");
+
+                    /*for (int i =0; i< iQtdeDeJogos; i++) {
+
+                        myList.add(aNumerosGerados[i]);
+                    }*/
+
+                    myList.addAll(Arrays.asList(aNumerosGerados).subList(0,iQtdeDeJogos));
+                    myList.add("\n\n");
+
+                    listView.setAdapter(adapter);
+                }
             }
         });
 
-
-        FloatingActionButton fabShare = findViewById(R.id.fab2);
+        FloatingActionButton fabShare = findViewById(R.id.fabShare);
 
         fabShare.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,10 +135,19 @@ public class ResultActivity extends AppCompatActivity {
                 Snackbar.make(view, R.string.compartilhando, Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
 
-                shareContent(tvResult.getText().toString());
+                StringBuilder strShareGame = new StringBuilder();
+
+                for (int i = 0; i < myList.size()-1; i++) {
+
+                    strShareGame.append(myList.get(i)).append("\n\n-------------------------\n");
+                }
+
+                shareContent(strShareGame.toString());
 
             }
         });
+
+
         // add back arrow to toolbar
         if (getSupportActionBar() != null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -117,21 +164,22 @@ public class ResultActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private String generateMultiBets(Surpresinha pSurpresinha,int iQtd) {
+    private String generateMultipleBetsList(Surpresinha pSurpresinha, int iQtd) {
 
-        StringBuilder retorno = new StringBuilder("Estes são os seus números da sorte:\n");
-        String sQuebralinha = "\n____________________\n";
-        int iControle;
+        StringBuilder retorno = new StringBuilder();
 
-        for(int i = 0; i < iQtd; i++) {
+        int iControl;
 
-            iControle = i + 1;
-            retorno.append("\nJogo ").append(iControle).append("\n\n").append(pSurpresinha.generateDiaDeSorteGame()).append(sQuebralinha);
+        for (int i = 0; i < iQtd; i++) {
+
+            iControl = i+1;
+
+            retorno.append("Jogo ").append(iControl).append("\n\n").append(pSurpresinha.generateDiaDeSorteGame()).append(";");
+
+            //list.add("Jogo " + iControl + "\n\n" + pSurpresinha.generateDiaDeSorteGame() + ";");
         }
-
-        return  retorno + "\n\n\n\n\n";
+        return retorno + "";
     }
-
 
     private String generateBet(Surpresinha pSurpresinha) {
 

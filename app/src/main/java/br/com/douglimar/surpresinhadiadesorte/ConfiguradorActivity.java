@@ -2,7 +2,6 @@ package br.com.douglimar.surpresinhadiadesorte;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,7 +12,6 @@ import android.widget.Toast;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.firebase.analytics.FirebaseAnalytics;
-
 
 public class ConfiguradorActivity extends AppCompatActivity {
 
@@ -103,9 +101,9 @@ public class ConfiguradorActivity extends AppCompatActivity {
 
                 Surpresinha surpresinha = new Surpresinha();
 
-                Intent intent1 = new Intent(getBaseContext(), ResultActivity.class);
+                Intent intent1 = new Intent(getBaseContext(), NewResultActivity.class);
                 intent1.putExtra(MainActivity.EXTRA_MESSAGE, message);
-                intent1.putExtra(MainActivity.EXTRA_MESSAGE2,  generateMultipleBets(surpresinha, iCount));
+                intent1.putExtra(MainActivity.EXTRA_MESSAGE2,  generateMultipleBetsList(surpresinha, iCount));
                 intent1.putExtra("XPTO",  iCount);
 
                 startActivity(intent1);
@@ -133,19 +131,18 @@ public class ConfiguradorActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @NonNull
-    private String generateMultipleBets(Surpresinha pSurpresinha, int iQtd) {
+    private String generateMultipleBetsList(Surpresinha pSurpresinha, int iQtd) {
 
-        StringBuilder retorno = new StringBuilder();
-        String sQuebralinha = "\n____________________\n";
-        int iControle;
+        StringBuilder result = new StringBuilder();
 
-        for(int i = 0; i < iQtd; i++) {
+        int iControl;
 
-            iControle = i+1;
-            retorno.append("\nJogo ").append(iControle).append("\n\n").append(pSurpresinha.generateDiaDeSorteGame()).append(sQuebralinha);
+        for (int i = 0; i < iQtd; i++) {
+
+            iControl = i+1;
+
+            result.append("Jogo ").append(iControl).append("\n\n").append(pSurpresinha.generateDiaDeSorteGame()).append(";");
         }
-
-        return  retorno + "\n\n\n\n\n";
+        return result + "";
     }
 }

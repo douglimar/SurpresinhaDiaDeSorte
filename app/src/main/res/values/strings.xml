@@ -12,6 +12,7 @@
     <string name="plus">+</string>
     <string name="gerar_numeros">GERAR NÚMEROS</string>
     <string name="numeros_da_sorte">Estes são os seus números da sorte:\n\n %1$s </string>
+    <string name="numeros_da_sorte2">Estes são os seus números da sorte:</string>
     <string name="minimo_2_jogos">Você tem que gerar pelo menos 2 jogos aqui.</string>
     <string name="maximo10jogos">Você pode gerar NO MÁXIMO 15 jogos ao mesmo tempo.</string>
     <string name="tip_generateNewBets">Clique no botão azul para gerar novas apostas sem ter que sair da tela</string>
@@ -22,5 +23,13 @@
     <string name="MyApps">Conheça nossos aplicativos</string>
     <string name="internet_conn">Sem conexão com a Internet. Verifique suas conexões e tente novamente.</string>
     <string name="ddm_software">DDM SOFTWARE</string>
+    <string name="title_activity_new_result">NewResultActivity</string>
+    <string name="desenvolvido_por">Desenvolvido por:</string>
+    <string name="pol_ticas_de_privacidade">Políticas de Privacidade</string>
+    <string name="text_disclaimer">Este aplicativo está em conformidade com as políticas de controle de privacidade do Google: Para maiores informações, visualize as políticas de privacidade do aplicativo no botão abaixo:</string>
+    <string name="app_version">Versão do Aplicativo:</string>
+    <string name="waiting_loading_results">Aguarde… Carregando Resultados</string>
+    <string name="waiting_loading_internet_results">Aguarde… Carregando Resultados na internet</string>
+    <string name="sobre">Sobre</string>
 
 </resources>

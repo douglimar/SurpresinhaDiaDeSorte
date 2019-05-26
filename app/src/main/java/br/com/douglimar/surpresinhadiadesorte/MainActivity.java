@@ -2,25 +2,22 @@ package br.com.douglimar.surpresinhadiadesorte;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
+
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
-import java.util.concurrent.atomic.AtomicReference;
 
 @SuppressWarnings("ALL")
 public class MainActivity extends AppCompatActivity {
@@ -44,10 +41,6 @@ public class MainActivity extends AppCompatActivity {
         final Intent intent = getIntent();
         final String message = intent.getStringExtra(MainActivity.EXTRA_MESSAGE);
 
-        TextView tvAppVersion = findViewById(R.id.tvAppVersion);
-
-        tvAppVersion.setText(getAppVersion(getApplicationContext()));
-
         // Create a AdView
         // Load Advertisement Banner
         AdView mAdView = findViewById(R.id.adViewMain);
@@ -67,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
                 bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "image");
                 mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
 
-                Intent intent2 = new Intent(getBaseContext(), ResultActivity.class);
+                Intent intent2 = new Intent(getBaseContext(), NewResultActivity.class);
 
                 intent2.putExtra(MainActivity.EXTRA_MESSAGE, message);
                 intent2.putExtra(MainActivity.EXTRA_MESSAGE2, surpresinha.generateDiaDeSorteGame());
@@ -99,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 if (isNetworkAvailable())
-                    carregaWebView();
+                    carregaWebView("http://www.loterias.caixa.gov.br/wps/portal/loterias/landing/diadesorte");
                 else
                     Toast.makeText(getApplicationContext(), R.string.internet_conn, Toast.LENGTH_LONG).show();
 
@@ -124,27 +117,30 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // handle arrow click here
         if (item.getItemId() == android.R.id.home) {
             finish(); // close this activity and return to preview activity (if there is any)
         }
+
+        if (item.getItemId() == R.id.menu_about) {
+
+            Intent intent = new Intent(this, AboutActivity.class);
+
+            startActivity(intent);
+        }
+
         return super.onOptionsItemSelected(item);
-    }
-
-    private void carregaWebView() {
-
-        Bundle bundle = new Bundle();
-        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "SelectGame");
-        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "CarregaWebView");
-        bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "image");
-        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
-
-        Intent intent = new Intent(getApplicationContext(), WebviewActivity.class);
-        intent.putExtra("URL", "http://www.loterias.caixa.gov.br/wps/portal/loterias/landing/diadesorte");
-
-        startActivity(intent);
     }
 
     private void openGooglePlay() {
@@ -163,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private boolean isNetworkAvailable() {
+    public boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager
                 = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         assert connectivityManager != null;
@@ -171,26 +167,19 @@ public class MainActivity extends AppCompatActivity {
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 
-    private String getAppVersion(Context context){
+    public void carregaWebView(String url) {
 
-        AtomicReference<String> version = new AtomicReference<>("");
+        Bundle bundle = new Bundle();
+        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "SelectGame");
+        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "CarregaWebView");
+        bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "image");
+        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
 
-        try {
+        Intent intent = new Intent(getApplicationContext(), WebviewActivity.class);
+        intent.putExtra("URL", url);
 
-            if (Build.VERSION.SDK_INT >= 28) {
-                PackageInfo packageInfo = context.getPackageManager().getPackageInfo(getPackageName(),0);
-                version.set("Versão: " + packageInfo.versionName + "-" + packageInfo.getLongVersionCode());
-            } else {
-
-                version.set("Versão: " + BuildConfig.VERSION_NAME + "-" + BuildConfig.VERSION_CODE);
-
-            }
-
-
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }
-        return version.get();
+        startActivity(intent);
     }
+
 
 }

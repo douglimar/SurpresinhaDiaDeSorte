@@ -7,4 +7,5 @@
     <color name="colorDiaDeSorteDark">#c49c52</color>
     <color name="colorDiaDeSorte">#f5d46f</color>
     <color name="colorDiaDeSorteUltraDark">#8c000000</color>
+    <color name="colorTransparentButton">#9a2e2e2e</color>
 </resources>
